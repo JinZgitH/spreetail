@@ -25,14 +25,14 @@ public class MultiValueDictApp {
 
     /* TODO: java doc */
     private void add(String[] args) {
-        // TODO: arguments validation
+        if (mismatchArgsCount(args.length, 3)) return;
         boolean res = map.computeIfAbsent(args[1], k -> new HashSet<>()).add(args[2]);
         println(res ? "Added" : "ERROR, member already exists for key");
     }
 
     /* TODO: java doc */
     private void remove(String[] args) {
-        // TODO: arguments validation
+        if (mismatchArgsCount(args.length, 3)) return;
         Set<String> set = map.get(args[1]);
         if (set == null) {
             println(ERROR_NO_KEY);
@@ -45,7 +45,7 @@ public class MultiValueDictApp {
 
     /* TODO: java doc */
     private void removeall(String[] args) {
-        // TODO: arguments validation
+        if (mismatchArgsCount(args.length, 2)) return;
         if (map.remove(args[1]) == null) {
             println(ERROR_NO_KEY);
         } else {
@@ -62,7 +62,7 @@ public class MultiValueDictApp {
 
     /* TODO: java doc */
     private void members(String[] args) {
-        // TODO: arguments validation
+        if (mismatchArgsCount(args.length, 2)) return;
         Set<String> set = map.get(args[1]);
         if (set == null) {
             println(ERROR_NO_KEY);
@@ -98,13 +98,13 @@ public class MultiValueDictApp {
 
     /* TODO: java doc */
     private void keyExists(String[] args) {
-        // TODO: arguments validation
+        if (mismatchArgsCount(args.length, 2)) return;
         println("" + map.containsKey(args[1]));
     } 
 
     /* TODO: java doc */
     private void memberExists(String[] args) {
-        // TODO: arguments validation
+        if (mismatchArgsCount(args.length, 3)) return;
         Set<String> set = map.get(args[1]);
         if (set == null) {
             println("false");
@@ -142,6 +142,15 @@ public class MultiValueDictApp {
 
     private static void println(String string) {
         System.out.println(string);
+    }
+
+    private static boolean mismatchArgsCount(int argsLength, int expectedLength) {
+        if (argsLength == expectedLength) {
+            return false;
+        } else {
+            println("Invalid argument counts: " + argsLength + " while expecting " + expectedLength);
+            return true;
+        }
     }
 
     public static void main(String[] args) {
