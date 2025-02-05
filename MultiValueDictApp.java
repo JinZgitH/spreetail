@@ -181,6 +181,7 @@ public class MultiValueDictApp {
     public static void main(String[] args) {
         println("Starting MultiValueDictApp: ");
         println("Enter '" + HELP_COMMAND_STRING + "' for supported commands.");
+        println("Enter '" + EXIT_COMMAND_STRING + "' to exit the app.");
 
         MultiValueDictApp app = new MultiValueDictApp();
 
