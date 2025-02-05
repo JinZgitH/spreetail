@@ -54,6 +54,13 @@ public class MultiValueDictApp {
     }
 
     /* TODO: java doc */
+    private void clear() {
+        // TODO: arguments validation
+        map.clear();
+        println("Cleared");
+    }
+
+    /* TODO: java doc */
     private void members(String[] args) {
         // TODO: arguments validation
         Set<String> set = map.get(args[1]);
@@ -68,6 +75,12 @@ public class MultiValueDictApp {
     private void keys() {
         // TODO: arguments validation
         printSet(map.keySet());
+    } 
+
+    /* TODO: java doc */
+    private void keyExists(String[] args) {
+        // TODO: arguments validation
+        println("" + map.containsKey(args[1]));
     } 
 
     private static void printSet(Set<String> set) {
@@ -113,11 +126,17 @@ public class MultiValueDictApp {
                 case "removeall":
                     app.removeall(inputArr);
                     break;
+                case "clear":
+                    app.clear();
+                    break;
                 case "members":
                     app.members(inputArr);
                     break;
                 case "keys":
                     app.keys();
+                    break;
+                case "keyexists":
+                    app.keyExists(inputArr);
                     break;
                 case HELP_COMMAND_STRING:
                     printHelp();
