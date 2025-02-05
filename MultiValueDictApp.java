@@ -11,6 +11,8 @@ import java.util.Set;
 public class MultiValueDictApp {
     private static final String EXIT_COMMAND_STRING = "exit";
     private static final String HELP_COMMAND_STRING = "help";
+    private static final String ERROR_NO_KEY = "ERROR, key does not exist.";
+    private static final String ERROR_NO_MEMBER = "ERROR, member does not exist.";
 
     private static final String HELP_FILE = "HELP.md";
     private static final Scanner scanner = new Scanner(System.in);
@@ -33,13 +35,22 @@ public class MultiValueDictApp {
         // TODO: arguments validation
         Set<String> set = map.get(args[1]);
         if (set == null) {
-            println("ERROR, key does not exist.");
+            println(ERROR_NO_KEY);
         } else {
             boolean res = set.remove(args[2]);
-            println(res ? "Removed" : "ERROR, member does not exist");
+            println(res ? "Removed" : ERROR_NO_MEMBER);
             if (set.isEmpty()) map.remove(args[1]);
         }
+    }
 
+    /* TODO: java doc */
+    private void removeall(String[] args) {
+        // TODO: arguments validation
+        if (map.remove(args[1]) == null) {
+            println(ERROR_NO_KEY);
+        } else {
+            println("Removed");
+        }
     }
 
     /* TODO: java doc */
@@ -47,7 +58,7 @@ public class MultiValueDictApp {
         // TODO: arguments validation
         Set<String> set = map.get(args[1]);
         if (set == null) {
-            println("ERROR, key does not exist.");
+            println(ERROR_NO_KEY);
         } else {
             printSet(set);
         }
@@ -98,6 +109,9 @@ public class MultiValueDictApp {
                     break;
                 case "remove":
                     app.remove(inputArr);
+                    break;
+                case "removeall":
+                    app.removeall(inputArr);
                     break;
                 case "members":
                     app.members(inputArr);
