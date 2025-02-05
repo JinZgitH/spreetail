@@ -37,6 +37,7 @@ public class MultiValueDictApp {
         } else {
             boolean res = set.remove(args[2]);
             println(res ? "Removed" : "ERROR, member does not exist");
+            if (set.isEmpty()) map.remove(args[1]);
         }
 
     }
