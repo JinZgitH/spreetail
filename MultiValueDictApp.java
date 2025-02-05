@@ -17,35 +17,49 @@ public class MultiValueDictApp {
     private static final String HELP_FILE = "HELP.txt";
     private static final Scanner scanner = new Scanner(System.in);
 
-    private Map<String, Set<String>> map;
+    Map<String, Set<String>> map;
 
     public MultiValueDictApp() {
         this.map = new HashMap<>();
     }
 
-    /* TODO: java doc */
-    private void add(String[] args) {
-        if (mismatchArgsCount(args.length, 3)) return;
+    /*
+     * Adds a member to a collection for a given key. Displays an error if the
+     * member already exists for the key.
+     */
+    public void add(String[] args) {
+        if (mismatchArgsCount(args.length, 3))
+            return;
         boolean res = map.computeIfAbsent(args[1], k -> new HashSet<>()).add(args[2]);
         println(res ? "Added" : "ERROR, member already exists for key");
     }
 
-    /* TODO: java doc */
-    private void remove(String[] args) {
-        if (mismatchArgsCount(args.length, 3)) return;
+    /*
+     * Removes a member from a key. If the last member is removed from the key, the
+     * key is removed from the dictionary. If the key or member does not exist,
+     * displays an error.
+     */
+    public void remove(String[] args) {
+        if (mismatchArgsCount(args.length, 3))
+            return;
         Set<String> set = map.get(args[1]);
         if (set == null) {
             println(ERROR_NO_KEY);
         } else {
             boolean res = set.remove(args[2]);
             println(res ? "Removed" : ERROR_NO_MEMBER);
-            if (set.isEmpty()) map.remove(args[1]);
+            if (set.isEmpty())
+                map.remove(args[1]);
         }
     }
 
-    /* TODO: java doc */
-    private void removeall(String[] args) {
-        if (mismatchArgsCount(args.length, 2)) return;
+    /*
+     * Removes all members for a key and removes the key from the dictionary.
+     * Returns an error if the key does not exist.
+     */
+    public void removeall(String[] args) {
+        if (mismatchArgsCount(args.length, 2))
+            return;
         if (map.remove(args[1]) == null) {
             println(ERROR_NO_KEY);
         } else {
@@ -53,16 +67,19 @@ public class MultiValueDictApp {
         }
     }
 
-    /* TODO: java doc */
-    private void clear() {
-        // TODO: arguments validation
+    /* Removes all keys and all members from the dictionary. */
+    public void clear() {
         map.clear();
         println("Cleared");
     }
 
-    /* TODO: java doc */
-    private void members(String[] args) {
-        if (mismatchArgsCount(args.length, 2)) return;
+    /*
+     * Returns the collection of strings for the given key. Return order is not
+     * guaranteed. Returns an error if the key does not exists.
+     */
+    public void members(String[] args) {
+        if (mismatchArgsCount(args.length, 2))
+            return;
         Set<String> set = map.get(args[1]);
         if (set == null) {
             println(ERROR_NO_KEY);
@@ -71,18 +88,22 @@ public class MultiValueDictApp {
         }
     }
 
-    /* TODO: java doc */
-    private void allMembers() {
-        // TODO: arguments validation
+    /*
+     * Returns all the members in the dictionary. Returns nothing if there are none.
+     * Order is not guaranteed.
+     */
+    public void allMembers() {
         int count = 1;
         for (Set<String> set : map.values()) {
             count = printSet(set, count);
         }
     }
 
-    /* TODO: java doc */
-    private void items() {
-        // TODO: arguments validation
+    /*
+     * Returns all keys in the dictionary and all of their members. Returns nothing
+     * if there are none. Order is not guaranteed.
+     */
+    public void items() {
         int count = 1;
         for (String key : map.keySet()) {
             Set<String> value = map.get(key);
@@ -90,28 +111,32 @@ public class MultiValueDictApp {
         }
     }
 
-    /* TODO: java doc */
-    private void keys() {
-        // TODO: arguments validation
+    /* Returns all the keys in the dictionary. Order is not guaranteed. */
+    public void keys() {
         printSet(map.keySet());
-    } 
+    }
 
-    /* TODO: java doc */
-    private void keyExists(String[] args) {
-        if (mismatchArgsCount(args.length, 2)) return;
+    /* Returns whether a key exists or not. */
+    public void keyExists(String[] args) {
+        if (mismatchArgsCount(args.length, 2))
+            return;
         println("" + map.containsKey(args[1]));
-    } 
+    }
 
-    /* TODO: java doc */
-    private void memberExists(String[] args) {
-        if (mismatchArgsCount(args.length, 3)) return;
+    /*
+     * Returns whether a member exists within a key. Returns false if the key does
+     * not exist.
+     */
+    public void memberExists(String[] args) {
+        if (mismatchArgsCount(args.length, 3))
+            return;
         Set<String> set = map.get(args[1]);
         if (set == null) {
             println("false");
         } else {
             println("" + set.contains(args[2]));
-        }    
-    } 
+        }
+    }
 
     private static void printSet(Set<String> set) {
         printSet(set, 1);
@@ -123,7 +148,7 @@ public class MultiValueDictApp {
 
     private static int printSet(Set<String> set, int count, String key) {
         String midString = key.length() == 0 ? ") " : ") " + key + ": ";
-        for (String str: set) {
+        for (String str : set) {
             println(count++ + midString + str);
         }
         return count;
