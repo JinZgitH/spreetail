@@ -72,6 +72,15 @@ public class MultiValueDictApp {
     }
 
     /* TODO: java doc */
+    private void allMembers() {
+        // TODO: arguments validation
+        int count = 1;
+        for (Set<String> set : map.values()) {
+            count = printSet(set, count);
+        }
+    }
+
+    /* TODO: java doc */
     private void keys() {
         // TODO: arguments validation
         printSet(map.keySet());
@@ -95,10 +104,14 @@ public class MultiValueDictApp {
     } 
 
     private static void printSet(Set<String> set) {
-        int count = 1;
+        printSet(set, 1);
+    }
+
+    private static int printSet(Set<String> set, int count) {
         for (String str: set) {
             println(count++ + ") " + str);
         }
+        return count;
     }
 
     private static void printHelp() {
@@ -142,6 +155,9 @@ public class MultiValueDictApp {
                     break;
                 case "members":
                     app.members(inputArr);
+                    break;
+                case "allmembers":
+                    app.allMembers();
                     break;
                 case "keys":
                     app.keys();
