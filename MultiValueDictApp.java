@@ -35,10 +35,20 @@ public class MultiValueDictApp {
         if (set == null) {
             println("ERROR, key does not exist.");
         } else {
-            int count = 1;
-            for (String str: set) {
-                println(count++ + ") " + str);
-            }
+            printSet(set);
+        }
+    }
+
+    /* TODO: java doc */
+    private void keys() {
+        // TODO: arguments validation
+        printSet(map.keySet());
+    } 
+
+    private static void printSet(Set<String> set) {
+        int count = 1;
+        for (String str: set) {
+            println(count++ + ") " + str);
         }
     }
 
@@ -74,6 +84,9 @@ public class MultiValueDictApp {
                     break;
                 case "members":
                     app.members(inputArr);
+                    break;
+                case "keys":
+                    app.keys();
                     break;
                 case HELP_COMMAND_STRING:
                     printHelp();
