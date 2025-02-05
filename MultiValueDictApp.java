@@ -83,6 +83,17 @@ public class MultiValueDictApp {
         println("" + map.containsKey(args[1]));
     } 
 
+    /* TODO: java doc */
+    private void memberExists(String[] args) {
+        // TODO: arguments validation
+        Set<String> set = map.get(args[1]);
+        if (set == null) {
+            println("false");
+        } else {
+            println("" + set.contains(args[2]));
+        }    
+    } 
+
     private static void printSet(Set<String> set) {
         int count = 1;
         for (String str: set) {
@@ -137,6 +148,9 @@ public class MultiValueDictApp {
                     break;
                 case "keyexists":
                     app.keyExists(inputArr);
+                    break;
+                case "memberexists":
+                    app.memberExists(inputArr);
                     break;
                 case HELP_COMMAND_STRING:
                     printHelp();
