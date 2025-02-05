@@ -14,3 +14,23 @@ The Multi-Value Dictionary app is a command line application that stores a multi
 8. `Memberexists`: Returns whether a member exists within a key.  Returns false if the key does not exist.
 9. `Allmembers`: Returns all the members in the dictionary.  Returns nothing if there are none. Order is not guaranteed.
 10. `Items`: Returns all keys in the dictionary and all of their members.  Returns nothing if there are none.  Order is not guaranteed.
+
+## How to Run the App
+1. download the file from github or clone the repository
+
+```shell
+$ wget -O MultiValueDictApp.java https://raw.githubusercontent.com/JinZgitH/spreetail/refs/heads/main/MultiValueDictApp.java
+$ wget -O HELP.md https://raw.githubusercontent.com/JinZgitH/spreetail/refs/heads/main/HELP.md
+```
+
+1. Compile the `MultiValueDictApp.java`
+
+```shell
+$ javac MultiValueDictApp.java 
+```
+
+1. Run the program
+
+```shell
+java MultiValueDictApp
+```

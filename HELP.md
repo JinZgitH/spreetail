@@ -1,11 +1,13 @@
----- display ----
+==== read ====
 keys
 members [key]
-
----- modify ----
+allmembers
+items
+keyexists [key]
+memberexist [key] [value]
+==== modify ====
 add [key] [value]
 remove [key] [value]
 removall [key]
 clear
-
-------------------
+==================
