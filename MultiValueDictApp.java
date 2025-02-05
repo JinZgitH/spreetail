@@ -22,10 +22,23 @@ public class MultiValueDictApp {
     }
 
     /* TODO: java doc */
-    private String add(String[] args) {
+    private void add(String[] args) {
         // TODO: arguments validation
         boolean res = map.computeIfAbsent(args[1], k -> new HashSet<>()).add(args[2]);
-        return res ? "Added" : "ERROR, member already exists for key";
+        println(res ? "Added" : "ERROR, member already exists for key");
+    }
+
+    /* TODO: java doc */
+    private void remove(String[] args) {
+        // TODO: arguments validation
+        Set<String> set = map.get(args[1]);
+        if (set == null) {
+            println("ERROR, key does not exist.");
+        } else {
+            boolean res = set.remove(args[2]);
+            println(res ? "Removed" : "ERROR, member does not exist");
+        }
+
     }
 
     /* TODO: java doc */
@@ -80,7 +93,10 @@ public class MultiValueDictApp {
             String[] inputArr = inputStr.split(" ");
             switch (inputArr[0]) {
                 case "add":
-                    println(app.add(inputArr));
+                    app.add(inputArr);
+                    break;
+                case "remove":
+                    app.remove(inputArr);
                     break;
                 case "members":
                     app.members(inputArr);
