@@ -21,11 +21,27 @@ public class MultiValueDictApp {
         this.map = new HashMap<>();
     }
 
+    /* TODO: java doc */
     private String add(String[] args) {
-        // TODO: invalid argument handling
+        // TODO: arguments validation
         boolean res = map.computeIfAbsent(args[1], k -> new HashSet<>()).add(args[2]);
         return res ? "Added" : "ERROR, member already exists for key";
     }
+
+    /* TODO: java doc */
+    private void members(String[] args) {
+        // TODO: arguments validation
+        Set<String> set = map.get(args[1]);
+        if (set == null) {
+            println("ERROR, key does not exist.");
+        } else {
+            int count = 1;
+            for (String str: set) {
+                println(count++ + ") " + str);
+            }
+        }
+    }
+
     private static void printHelp() {
         try {
             List<String> lines = Files.readAllLines(Paths.get(HELP_FILE));
@@ -37,9 +53,13 @@ public class MultiValueDictApp {
         }
     }
 
+    private static void println(String string) {
+        System.out.println(string);
+    }
+
     public static void main(String[] args) {
-        System.out.println("Starting MultiValueDictApp: ");
-        System.out.println("Enter '" + HELP_COMMAND_STRING + "' for supported commands.");
+        println("Starting MultiValueDictApp: ");
+        println("Enter '" + HELP_COMMAND_STRING + "' for supported commands.");
 
         MultiValueDictApp app = new MultiValueDictApp();
 
@@ -50,7 +70,10 @@ public class MultiValueDictApp {
             String[] inputArr = inputStr.split(" ");
             switch (inputArr[0]) {
                 case "add":
-                    System.out.println(app.add(inputArr));
+                    println(app.add(inputArr));
+                    break;
+                case "members":
+                    app.members(inputArr);
                     break;
                 case HELP_COMMAND_STRING:
                     printHelp();
