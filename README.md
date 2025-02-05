@@ -20,8 +20,12 @@ The Multi-Value Dictionary app is a command line application that stores a multi
 
 ```shell
 wget -O MultiValueDictApp.java https://raw.githubusercontent.com/JinZgitH/spreetail/refs/heads/main/MultiValueDictApp.java
-wget -O HELP.md https://raw.githubusercontent.com/JinZgitH/spreetail/refs/heads/main/HELP.md
+wget -O HELP.txt https://raw.githubusercontent.com/JinZgitH/spreetail/refs/heads/main/HELP.txt
+
+git clone https://github.com/JinZgitH/spreetail.git
+cd spreetail
 ```
+
 
 2. Compile the `MultiValueDictApp.java`
 
