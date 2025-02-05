@@ -14,7 +14,7 @@ public class MultiValueDictApp {
     private static final String ERROR_NO_KEY = "ERROR, key does not exist.";
     private static final String ERROR_NO_MEMBER = "ERROR, member does not exist.";
 
-    private static final String HELP_FILE = "HELP.md";
+    private static final String HELP_FILE = "HELP.txt";
     private static final Scanner scanner = new Scanner(System.in);
 
     private Map<String, Set<String>> map;
