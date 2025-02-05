@@ -1,6 +1,7 @@
 # Spreetail Sample Command Line App: Multivalue String Dictionary
 
-This is command line app written in Java
+## Summary
+The Multi-Value Dictionary app is a command line application that stores a multivalue dictionary in memory. All keys and members are strings.
 
 ## Main APIs:
 1. `Keys`: Returns all the keys in the dictionary.  Order is not guaranteed.
